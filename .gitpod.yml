@@ -1,0 +1,7 @@
+jetbrains:
+  intellij:
+    plugins:
+      - dev.blachut.svelte.lang
+      - org.toml.lang
+      - org.rust.lang
+      - com.intellij.nativeDebug

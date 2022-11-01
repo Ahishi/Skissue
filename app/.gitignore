@@ -1,0 +1,6 @@
+### Svelte
+/build
+/.svelte-kit
+/package
+.env.*
+!.env.example
