@@ -16,7 +16,7 @@
     ]
 </script>
 
-<nav class="h-[65px] w-screen flex justify-center bg-purple-600 relative">
+<nav class="h-[65px] w-screen flex justify-center bg-purple-900 relative">
     {#each navs as nav}
         <a class="h-full px-5 hover:bg-purple-700 text-white font-semibold flex" href="{nav.href}">
             <p class="my-auto uppercase text-sm">{nav.name}</p>
