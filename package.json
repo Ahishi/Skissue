@@ -35,5 +35,8 @@
 		"vitest": "^0.25.3",
 		"webpack": "^5.75.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"autoprefixer": "^10.4.13"
+	}
 }

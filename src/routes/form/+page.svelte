@@ -8,20 +8,20 @@
   export let data;
 
   const components = [
-    { type: 'radio-buttons',   component: RadioButtons },
-    { type: 'select-box',   component: SelectBox },
-    { type: 'text-area',   component: TextArea },
-    { type: 'text-field',   component: TextField },
-    { type: 'review',   component: Review },
+    { type: "radio-buttons", component: RadioButtons },
+    { type: "select-box", component: SelectBox },
+    { type: "text-area", component: TextArea },
+    { type: "text-field", component: TextField },
+    { type: "review", component: Review }
   ];
 
-  let selectedComponent = components[0]
+  let selectedComponent = components[0];
 
 </script>
 
 {#each data.sections as section}
   <span class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
-  <svelte:component this={selectedComponent.component} {section}/>
+  <svelte:component this={selectedComponent.component} {section} />
 {/each}
 
 <!-- <SelectBox/>
