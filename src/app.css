@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply bg-background-darker;
+    @apply bg-background-darkest;
     @apply text-white;
     font-family: 'Inter', sans-serif;
 }

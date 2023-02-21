@@ -19,10 +19,18 @@
 
 </script>
 
-{#each data.sections as section}
+<article class="flex flex-col gap-1 mx-2">
+  <div class="bg-primary px-2 py-4 rounded">
+    <h1 class="text-5xl font-semibold capitalize">{data.form.name}</h1>
+    {#if data.form.group}
+      <h4 class="text-xl font-medium capitalize">{data.form.group}</h4>
+    {/if}
+  </div>
+{#each data.form.sections as section}
   <span class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
   <svelte:component this={selectedComponent.component} {section} />
 {/each}
+</article>
 
 <!-- <SelectBox/>
 <RadioButtons/>
