@@ -29,18 +29,10 @@
     </div>
   {/if}
 
-  <button
+  <a
+    href="/form/new"
     class="absolute bottom-1 right-2 bg-secondary-80 rounded py-1 font-medium opacity-80 transition hover:opacity-100 flex w-[15rem]">
     <span class="material-symbols-outlined mx-1">add</span>
     <span>New</span>
-  </button>
+  </a>
 </section>
-
-<style>
-    .material-symbols-outlined {
-        font-variation-settings: 'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
-    }
-</style>

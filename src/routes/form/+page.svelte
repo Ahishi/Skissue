@@ -2,7 +2,7 @@
   import RadioButtons from "../../components/form-parts/RadioButtons.svelte";
   import SelectBox from "../../components/form-parts/SelectBox.svelte";
   import TextArea from "../../components/form-parts/TextArea.svelte";
-  import Review from "../../components/form-parts/Review.svelte";
+  import Contact from "../../components/form-parts/header/Contact.svelte";
 
   export let data;
 
@@ -10,7 +10,6 @@
     { type: "radio-buttons", component: RadioButtons },
     { type: "select-box", component: SelectBox },
     { type: "text-area", component: TextArea },
-    { type: "review", component: Review }
   ];
 
   let selectedComponent = components[0];
@@ -24,18 +23,15 @@
   {/if}
 </div>
 
-<div class="mt-1 flex flex-col gap-1">
+<form class="mt-1 flex flex-col gap-1">
+
+  <Contact contact={data.form.group}/>
+
   {#each data.form.sections as section}
-    <div>
-      <span class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
+    <span class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
+    <div class="opacity-80 bg-background-darker rounded flex flex-col gap-y-0.5 p-2 w-full z-10">
       <svelte:component this={selectedComponent.component} {section} />
     </div>
   {/each}
 
-</div>
-
-<!-- <SelectBox/>
-<RadioButtons/>
-<TextArea/>
-<TextField/>
-<Review/> -->
+</form>

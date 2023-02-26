@@ -3,6 +3,11 @@ export function load() {
     form: {
       name: "testform",
       group: "testgroup",
+      contact: {
+        steam: "tester",
+        time: "",
+        date: "",
+      },
       sections: [
         {
           id: 1,
@@ -74,13 +79,7 @@ export function load() {
           type: "text-area",
           title: "What initially caused you skill issue to occur?",
           required: false,
-        },
-        {
-          id: 5,
-          type: "review",
-          title: "What initially caused you skill issue to occur?",
-          required: false,
-        },
+        }
       ]
     }
   }
