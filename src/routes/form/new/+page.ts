@@ -17,15 +17,36 @@ export function load() {
           description: "",
           options: [
             {
-              id: 1,
-              label: "Dev bias",
-              state: false,
+              id: 0,
+              label: "1",
+              state: true,
               inputField: true,
               inputText: ""
             },
             {
+              id: 1,
+              label: "2",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
               id: 2,
-              label: "Clan man bad/toxic",
+              label: "3",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
+              id: 3,
+              label: "4",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
+              id: 4,
+              label: "5",
               state: false,
               inputField: false,
               inputText: ""
