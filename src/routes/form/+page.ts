@@ -5,8 +5,8 @@ export function load() {
       group: "testgroup",
       contact: {
         steam: "tester",
-        time: "",
-        date: "",
+        time: "11:11",
+        date: "01/11/2022",
       },
       sections: [
         {
