@@ -1,0 +1,1 @@
+<button type="button" on:click={() => onclick()} class="material-symbols-outlined text-sm my-auto opacity-80 hover:opacity-100" >close</button>

@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-background-darkest;
+    @apply text-white;
+    font-family: 'Inter', sans-serif;
+}
+
+.title-font {
+    font-family: 'Archivo', sans-serif;
+}
+
