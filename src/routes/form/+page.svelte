@@ -6,7 +6,7 @@
   import SelectBoxSmall from "../../components/form-parts/readonly/SelectBoxSmall.svelte";
   import Header from "../../components/form-parts/readonly/Header.svelte";
 
-  export let data;
+  export let data: any;
 
   const components = [
     { type: "radio-buttons", component: RadioButtons },
@@ -15,7 +15,7 @@
     { type: "select-box-small", component: SelectBoxSmall },
   ];
 
-  let selectedComponent = components[0];
+  let selectedComponent: any = components[0];
 
 </script>
 

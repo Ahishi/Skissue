@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let form
+  export let form: any
 </script>
 
 <a href="/form" class="h-[16rem] w-[12rem] relative opacity-80 hover:opacity-100 transition ease-out" >
