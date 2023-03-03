@@ -1,0 +1,12 @@
+<div>
+  <form>
+    <legend>Login</legend>
+    <input/>
+    <input/>
+  </form>
+  <form>
+    <legend>Register</legend>
+    <input/>
+    <input/>
+  </form>
+</div>
