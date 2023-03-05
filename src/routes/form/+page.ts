@@ -5,8 +5,8 @@ export function load() {
       group: "testgroup",
       contact: {
         steam: "tester",
-        time: "11:11",
-        date: "01/11/2022",
+        time: "",
+        date: "",
       },
       sections: [
         {
@@ -17,15 +17,36 @@ export function load() {
           description: "",
           options: [
             {
-              id: 1,
-              label: "Dev bias",
-              state: false,
+              id: 0,
+              label: "1",
+              state: true,
               inputField: true,
               inputText: ""
             },
             {
+              id: 1,
+              label: "2",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
               id: 2,
-              label: "Clan man bad/toxic",
+              label: "3",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
+              id: 3,
+              label: "4",
+              state: false,
+              inputField: false,
+              inputText: ""
+            },
+            {
+              id: 4,
+              label: "5",
               state: false,
               inputField: false,
               inputText: ""
@@ -57,6 +78,29 @@ export function load() {
         },
         {
           id: 3,
+          type: "select-box-small",
+          title: "What initially caused you skill issue to occur?",
+          required: false,
+          description: "",
+          options: [
+            {
+              id: 1,
+              label: "Dev bias 2",
+              state: false,
+              inputField: true,
+              inputText: ""
+            },
+            {
+              id: 2,
+              label: "Clan man bad/toxic 2",
+              state: false,
+              inputField: false,
+              inputText: ""
+            }
+          ]
+        },
+        {
+          id: 4,
           type: "radio-buttons",
           title: "What initially caused you skill issue to occur?",
           required: false,
@@ -75,11 +119,11 @@ export function load() {
           ]
         },
         {
-          id: 4,
+          id: 5,
           type: "text-area",
           title: "What initially caused you skill issue to occur?",
           required: false,
-        }
+        },
       ]
     }
   }

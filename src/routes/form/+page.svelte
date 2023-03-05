@@ -26,7 +26,7 @@
   {#each data.form.sections as section}
     <span class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
     <article class="rounded overflow-clip w-full z-10 opacity-80 p-2 flex flex-col gap-y-0.5 bg-background-darker rounded mr-0.5">
-      <svelte:component this={selectedComponent.component} readonly={false} {section} />
+      <svelte:component this={selectedComponent.component} readonly={true} {section} />
     </article>
   {/each}
 

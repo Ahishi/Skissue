@@ -1,31 +1,14 @@
 <script lang="ts">
-	import Avatar from '../../components/Avatar.svelte';
+	import Avatar from "../../components/Avatar.svelte";
+	import Search from "./Search.svelte";
 
-	import { setContext } from 'svelte';
-	import { writable } from 'svelte/store';
-	import { fade } from 'svelte/transition';
-	import { searchForms, searchHandler } from './search';
-	import { onDestroy } from 'svelte';
-	
+	import { setContext } from "svelte";
+	import { writable } from "svelte/store";
+	import { fade } from "svelte/transition";
+
 
 	let viewState = writable(0);
-	setContext('viewState', viewState);
-
-	export let data: import('./$types').PageData;
-	
-  let searchResults = data.forms.map((form) => ({
-		...form,
-		searchTerms: `${form.name} ${form.group} ${form.creator}`
-	}));
-  console.log(searchResults);
-
-	const search = searchForms(searchResults);
-
-  const unsubscribe = search.subscribe((value) => searchHandler(value));
-  
-  onDestroy(() => {
-    unsubscribe();
-  });
+	setContext("viewState", viewState);
 
 	function clickOutside(element: any, callbackFunction: any) {
 		function onClick(event: any) {
@@ -34,7 +17,7 @@
 			}
 		}
 
-		document.body.addEventListener('click', onClick);
+		document.body.addEventListener("click", onClick);
 
 		return {
 			update(newCallbackFunction: any) {
@@ -60,17 +43,8 @@
 <div class="flex h-screen">
 	<div class="w-screen relative">
 		<nav class="mx-2 h-3 flex relative my-1">
-			<!-- Form search
-      
-    -->
-			<button class="absolute left-1 h-full material-symbols-outlined">search</button>
-			<input
-				type="search"
-				placeholder="Search"
-        bind:value={$search.search} 
-				class="h-full rounded-full w-[32rem] bg-background-dark opacity-80 focus:bg-white focus:text-black px-3 transition outline-none"
-			/>
-			<pre>{JSON.stringify($search.filtered, null, 2)}</pre>
+			<!-- Form search -->
+			<Search/>
 			<!-- Segmented button for All/Group/Personal selection -->
 			<div class="flex rounded-full opacity-80 border overflow-clip mx-1 my-0.25 text-sm">
 				<button
@@ -108,7 +82,7 @@
 	{#if openGroup}
 		<div
 			transition:fade={{ duration: 150 }}
-			class="absolute flex flex-col w-[24rem] right-[17rem] py-1 pl-1 pr-0.5 h-full top-0"
+			class="absolute z-50 flex flex-col w-[24rem] right-[17rem] py-1 pl-1 pr-0.5 h-full top-0"
 			use:clickOutside={() => {
 				openGroup = false;
 			}}
@@ -183,13 +157,6 @@
 		{/each}
 
 		<!-- Setting Controls -->
-		<div class="flex block mx-1 my-1 pt-1 mt-auto justify-between bg-background-darker">
-			<Avatar />
-			<a
-				href="/settings"
-				class="material-symbols-outlined opacity-80 h-2 aspect-square text-center transition hover:opacity-100 leading-[140%]"
-				>settings</a
-			>
-		</div>
+		<Avatar />
 	</aside>
 </div>

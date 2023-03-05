@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let section
+  export let section;
+  export let readonly: boolean;
 </script>
 
 <div class="flex">
@@ -9,7 +10,8 @@
 
 <div class="flex">
   {#each section.options as option}
-    <input type="checkbox" id="{section.id}-{option.id}" bind:value={option.state}>
-    <label class="ml-0.5 mr-1" for="{section.id}-{option.id}"> {option.label} </label>
+    <input class="bg-background-dark text-primary my-auto rounded-md disabled:opacity-60" type="checkbox"
+           disabled={readonly} id="{section.id}-{option.id}" bind:value={option.state}>
+    <label class="ml-0.5 mr-1 my-auto" for="{section.id}-{option.id}"> {option.label} </label>
   {/each}
 </div>

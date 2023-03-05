@@ -24,12 +24,12 @@
 <h4 class="font-semibold">{section.title}</h4>
 {#each section.options as option, index}
   <div class="flex">
-    <input name="{section.id}" disabled type="radio" id="{section.id}-{option.id}" bind:value={option.state}>
+    <input class="disabled:opacity-60 my-auto" name="{section.id}" disabled type="radio" id="{section.id}-{option.id}" bind:value={option.state}>
     <label class="ml-0.5 mr-0.25" for="{section.id}-{option.id}">
-      <input class="bg-transparent outline-0 border-b" type="text" value={option.label}>
+      <input class="bg-transparent focus:ring-0 focus:border-white border-x-0 border-t-0 border-b" type="text" value={option.label}>
     </label>
     <!-- Remove button -->
-    <button type="button" class="material-symbols-outlined text-sm my-auto opacity-80 hover:opacity-100"
+    <button type="button" class="material-symbols-outlined text-lg my-auto opacity-80 hover:opacity-100"
             on:click={() => {deleteOption(index)}}>close
     </button>
   </div>
@@ -37,6 +37,6 @@
 <!-- Section editable add -->
 <button on:click={() => addOption()} class="text-left flex opacity-80 hover:opacity-100 w-fit"
         type="button">
-  <span class="material-symbols-outlined text-sm my-auto">add</span>
-  <span class="ml-0.25 text-sm">Add</span>
+  <button class="material-symbols-outlined pointer-events-none text-lg mr-0.25">add</button>
+  <span class="h-fit my-auto">Add</span>
 </button>

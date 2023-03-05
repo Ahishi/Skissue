@@ -29,23 +29,23 @@
 
 <!-- Section body -->
 {#each section.options as option, index}
-  <div>
+  <div class="flex">
 
     <!-- Checkbox -->
-    <input type="checkbox" id="{section.id}-{option.id}" disabled bind:value={option.state}
+    <input class="my-auto rounded-md disabled:opacity-60 text-primary" type="checkbox" id="{section.id}-{option.id}" disabled bind:value={option.state}
            checked={option.state}>
 
     <!-- Label -->
     <label class="ml-0.25">
-      <input class="bg-transparent outline-0 border-b" type="text" value={option.label}>
+      <input class="bg-transparent focus:border-white focus:ring-0 border-x-0 border-t-0 border-b" type="text" value={option.label}>
     </label>
 
     <!-- Textfield choice -->
     <label class="italic text-xs opacity-80 my-auto ml-0.5">(Includes textfield?)</label>
-    <input class="ml-0.5" type="checkbox" bind:value={option.inputField} checked={option.inputField}>
+    <input class="ml-1 mr-0.5 text-primary rounded-md my-auto" type="checkbox" bind:value={option.inputField} checked={option.inputField}>
 
     <!-- Remove button -->
-    <button type="button" class="material-symbols-outlined text-sm my-auto opacity-80 hover:opacity-100"
+    <button type="button" class="material-symbols-outlined my-auto text-lg my-auto opacity-80 hover:opacity-100"
             on:click={() => {deleteOption(index)}}>close
     </button>
   </div>
@@ -54,6 +54,6 @@
 <!-- Section editable add -->
 <button on:click={() => addOption()} class="text-left flex opacity-80 hover:opacity-100 w-fit"
         type="button">
-  <span class="material-symbols-outlined text-sm my-auto">add</span>
-  <span class="ml-0.25 text-sm">Add</span>
+  <button class="material-symbols-outlined pointer-events-none text-lg mr-0.25">add</button>
+  <span class="h-fit my-auto">Add</span>
 </button>
