@@ -148,7 +148,7 @@
 					event.stopPropagation();
 				}}
 			>
-				<figure class="h-2 my-auto aspect-square bg-primary rounded-full" />
+				<figure class="h-2 my-auto aspect-square bg-primary rounded-full"> </figure>
 				<div class="my-auto mx-1 pointer-events-none">
 					<h2 class="font-medium">Testgroup</h2>
 					<h4 class="text-xs opacity-80">members 8</h4>
