@@ -1,11 +1,14 @@
 <script lang="ts">
-  export let section; //section JSON prop
+  import { form } from "../../../routes/form/stores";
+
+  export let index
+  let section = $form.sections[index]
 
   //Function for adding an option to the JSON document
   function addOption() {
-    section.options = [...section.options,
+    section["options"] = [...section["options"],
       {
-        id: section.options.last_index++,
+        id: section["options"].last_index++,
         label: "",
         state: false,
         inputField: false,
@@ -17,7 +20,7 @@
   //Function for removing an option from the JSON document
   function deleteOption(index: number) {
     console.log(index);
-    section.options = [...section.options.slice(0, index), ...section.options.slice(index + 1)];
+    section["options"] = [...section["options"].slice(0, index), ...section["options"].slice(index + 1)];
   }
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import FilledForm from "../../components/FilledForm.svelte";
   import { getContext } from "svelte";
-  import { forms } from './stores.ts';
+  import { forms } from "./stores.ts";
 
   let state:any = getContext("viewState");
 </script>

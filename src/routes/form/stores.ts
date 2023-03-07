@@ -1,12 +1,14 @@
-export function load() {
-  return {
-    form: {
-      name: "testform",
+import { writable } from "svelte/store";
+
+export const form =
+  writable(
+    {
+      name: "preset",
       group: "testgroup",
       contact: {
-        steam: "tester",
+        steam: "",
         time: "",
-        date: "",
+        date: ""
       },
       sections: [
         {
@@ -14,7 +16,6 @@ export function load() {
           type: "select-box",
           title: "What initially caused you skill issue to occur?",
           required: false,
-          description: "",
           options: [
             {
               id: 0,
@@ -58,7 +59,6 @@ export function load() {
           type: "select-box",
           title: "What initially caused you skill issue to occur?",
           required: false,
-          description: "",
           options: [
             {
               id: 1,
@@ -109,12 +109,12 @@ export function load() {
             {
               id: 1,
               label: "Dev bias 2",
-              state: false,
+              state: false
             },
             {
               id: 2,
               label: "Clan man bad/toxic 2",
-              state: false,
+              state: false
             }
           ]
         },
@@ -122,9 +122,7 @@ export function load() {
           id: 5,
           type: "text-area",
           title: "What initially caused you skill issue to occur?",
-          required: false,
-        },
+          required: false
+        }
       ]
-    }
-  }
-}
+    });

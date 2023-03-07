@@ -2,10 +2,28 @@
 	import Avatar from "../../components/Avatar.svelte";
 	import Search from "./Search.svelte";
 
-	import { setContext } from "svelte";
+	import { onMount, setContext } from "svelte";
 	import { writable } from "svelte/store";
 	import { fade } from "svelte/transition";
+	import { onAuthStateChanged } from "firebase/auth";
+	import { getStores } from "$app/stores";
+	import { addDoc } from 'firebase/firestore/lite';
+	import { auth, groupCollection } from "../../firebase";
 
+	let { session } = getStores();
+
+	onMount(() => {
+		onAuthStateChanged(
+			auth,
+			(user) => {
+				session.set({ user });
+			},
+			(error) => {
+				session.set({ user: null });
+				console.log(error);
+			}
+		);
+	});
 
 	let viewState = writable(0);
 	setContext("viewState", viewState);
@@ -27,6 +45,19 @@
 				document.body.removeEventListener('click', onClick);
 			}
 		};
+	}
+
+	const group = {
+		name: "Coolgroup",
+		color: "#fffff",
+		owner: auth.currentUser?.uid,
+		presets: [],
+		forms: [],
+		members: []
+	}
+
+	async function createNewGroup() {
+		await addDoc(groupCollection, group)
 	}
 
 	function handleMouseOver() {
@@ -129,7 +160,7 @@
 					<button class="w-1/2 py-1 opacity-80 hover:opacity-100 font-medium transition bg-primary"
 						>Join</button
 					>
-					<button class="w-1/2 py-1 opacity-80 hover:opacity-100 font-medium transition bg-primary"
+					<button on:click={createNewGroup} class="w-1/2 py-1 opacity-80 hover:opacity-100 font-medium transition bg-primary"
 						>Create</button
 					>
 				</div>

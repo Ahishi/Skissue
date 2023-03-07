@@ -1,5 +1,7 @@
 <script lang="ts">
-  export let section
+  import { form } from "../../../routes/form/stores";
+  export let index
+  let section = $form.sections[index]
 </script>
 
 <h4 class="font-semibold">{section.title}</h4>
