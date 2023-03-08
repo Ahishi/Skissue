@@ -1,5 +1,8 @@
 <script lang="ts">
-  export let section;
+  import { form } from "../../../routes/form/stores";
+
+  export let index;
+  let section = $form.sections[index]
   export let readonly: boolean;
 </script>
 
@@ -11,7 +14,7 @@
 <div class="flex">
   {#each section.options as option}
     <input class="bg-background-dark text-primary my-auto rounded-md disabled:opacity-60" type="checkbox"
-           disabled={readonly} id="{section.id}-{option.id}" bind:value={option.state}>
+           disabled={readonly} id="{section.id}-{option.id}" bind:checked={$form.sections[section.id].options[index].state}>
     <label class="ml-0.5 mr-1 my-auto" for="{section.id}-{option.id}"> {option.label} </label>
   {/each}
 </div>

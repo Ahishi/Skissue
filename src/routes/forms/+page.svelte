@@ -1,9 +1,32 @@
 <script lang="ts">
   import FilledForm from "../../components/FilledForm.svelte";
-  import { getContext } from "svelte";
-  import { forms } from "./stores.ts";
+  import { getContext, onMount } from "svelte";
+  import { auth, db } from "../../firebase";
+  import { collection, getDocs, query } from "firebase/firestore";
+  import { writable } from "svelte/store";
 
   let state:any = getContext("viewState");
+  export let loadedForms = [];
+  const user = getContext("user")
+
+  onMount(async () => {
+    if($user != null){
+      await loadForms()
+    } else {
+      console.log("not logged in")
+    }
+  })
+
+  async function loadForms(){
+    const q = query(collection(db, "users", $user.uid, "presets"))
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data())
+      loadedForms = [...loadedForms, doc]
+    });
+  }
+
 </script>
 
 <section class="relative w-full h-[calc(100%-80px)] overflow-y-auto">
@@ -12,9 +35,7 @@
     <article>
       <h1 class="mx-2 py-1 text-4xl title-font opacity-80">Group Requested</h1>
       <div class="flex px-2 py-1 flex-wrap gap-x-2 w-full">
-        {#each $forms as form}
-          <FilledForm {form} />
-        {/each}
+        <h4 class="opacity-60 italic text-xm">Nothing here...</h4>
       </div>
     </article>
   {/if}
@@ -22,8 +43,8 @@
   {#if $state === 0 || $state === 2}
     <h1 class="mx-2 py-1 text-4xl title-font opacity-80">Presets</h1>
     <div class="flex px-2 py-1 flex-wrap gap-x-2 w-full">
-      {#each $forms as form}
-        <FilledForm {form} />
+      {#each loadedForms as form}
+        <FilledForm data={form} />
       {/each}
     </div>
   {/if}

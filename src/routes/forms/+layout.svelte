@@ -1,32 +1,16 @@
 <script lang="ts">
-	import Avatar from "../../components/Avatar.svelte";
+	import Avatar from "../../components/helpers/Avatar.svelte";
 	import Search from "./Search.svelte";
 
-	import { onMount, setContext } from "svelte";
+	import { getContext, setContext } from "svelte";
 	import { writable } from "svelte/store";
 	import { fade } from "svelte/transition";
-	import { onAuthStateChanged } from "firebase/auth";
-	import { getStores } from "$app/stores";
-	import { addDoc } from 'firebase/firestore/lite';
-	import { auth, groupCollection } from "../../firebase";
-
-	let { session } = getStores();
-
-	onMount(() => {
-		onAuthStateChanged(
-			auth,
-			(user) => {
-				session.set({ user });
-			},
-			(error) => {
-				session.set({ user: null });
-				console.log(error);
-			}
-		);
-	});
+	import { addDoc } from "firebase/firestore/lite";
+	import { auth, db, groupCollection } from "../../firebase";
 
 	let viewState = writable(0);
 	setContext("viewState", viewState);
+	const user = getContext("user")
 
 	function clickOutside(element: any, callbackFunction: any) {
 		function onClick(event: any) {

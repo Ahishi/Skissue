@@ -8,7 +8,7 @@
   function addOption() {
     section["options"] = [...section["options"],
       {
-        id: section["options"].last_index++,
+        id: section["options"].length,
         label: "",
         state: false,
         inputField: false,
@@ -31,21 +31,21 @@
 </div>
 
 <!-- Section body -->
-{#each section.options as option, index}
+{#each section["options"] as option, index}
   <div class="flex">
 
     <!-- Checkbox -->
-    <input class="my-auto rounded-md disabled:opacity-60 text-primary" type="checkbox" id="{section.id}-{option.id}" disabled bind:value={option.state}
+    <input class="my-auto rounded-md disabled:opacity-60 text-primary" type="checkbox" id="{section.id}-{option.id}" disabled
            checked={option.state}>
 
     <!-- Label -->
     <label class="ml-0.25">
-      <input class="bg-transparent focus:border-white focus:ring-0 border-x-0 border-t-0 border-b" type="text" value={option.label}>
+      <input class="bg-transparent focus:border-white focus:ring-0 border-x-0 border-t-0 border-b" type="text" bind:value={$form.sections[section.id].options[index].label}>
     </label>
 
     <!-- Textfield choice -->
     <label class="italic text-xs opacity-80 my-auto ml-0.5">(Includes textfield?)</label>
-    <input class="ml-1 mr-0.5 text-primary rounded-md my-auto" type="checkbox" bind:value={option.inputField} checked={option.inputField}>
+    <input class="ml-1 mr-0.5 text-primary rounded-md my-auto" type="checkbox" bind:checked={$form.sections[section.id].options[index].inputField}>
 
     <!-- Remove button -->
     <button type="button" class="material-symbols-outlined my-auto text-lg my-auto opacity-80 hover:opacity-100"

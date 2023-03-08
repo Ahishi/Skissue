@@ -37,7 +37,7 @@
 
       <!-- Required? -->
       <div class="flex">
-        <input bind:value={section.required} class="rounded-md text-primary my-auto mr-0.5" id="require" type="checkbox" />
+        <input bind:checked={section.required} class="rounded-md text-primary my-auto mr-0.5" id="require" type="checkbox" />
         <label class="text-sm my-auto font-medium" for="require">Required</label>
       </div>
 

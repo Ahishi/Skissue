@@ -1,8 +1,10 @@
 <script lang="ts">
-  export let form: any
+
+  export let data: any
+  let form = data.data()
 </script>
 
-<a href="/form" class="h-[16rem] w-[12rem] relative opacity-80 hover:opacity-100 transition ease-out" >
+<a href="/form/{data.id}" class="h-[16rem] w-[12rem] relative opacity-80 hover:opacity-100 transition ease-out" >
   <div class="bg-background-darker rounded-t p-2">
     <div class="h-0.5 rounded-full bg-background-dark w-1/2"></div>
     <div class="h-0.5 rounded-full bg-background-dark mt-0.5"></div>
