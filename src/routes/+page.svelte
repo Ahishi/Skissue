@@ -68,7 +68,7 @@
 
 	</div>
 	<div>
-		<h1 transition:fly={{ y: 200, duration: 2000, delay: 6000 }} on:transitionstart>
+		<h1 in:fly={{ y: 200, duration: 2000, delay: 6000 }} on:transitionstart>
 			Antti Aho, Andreas Lang, Jaakko Kuivasniemi
 		</h1>
 
