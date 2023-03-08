@@ -5,8 +5,12 @@
   import { signOut} from "firebase/auth";
   import { goto } from "$app/navigation";
   import { getContext } from "svelte";
+	import { fade, fly } from 'svelte/transition';
+	import { elasticOut } from 'svelte/easing';
+	import { onMount } from 'svelte';
 
 
+  let loaded = false;
   let openLoginOptions = false;
   let loginNotRegister = true;
 
@@ -14,6 +18,24 @@
     await signOut(auth);
     await goto("/");
   }
+  onMount(() => {
+		loaded = true;
+	});
+	function spin(node, { duration }) {
+		return {
+			duration,
+			css: (t) => {
+				const eased = elasticOut(t);
+				return `
+					transform: scale(${eased}) rotate(${eased * 1080}deg);
+					color: hsl(
+						${~~(t * 360)},
+						${Math.min(100, 1000 - 1000 * t)}%,
+						${Math.min(50, 500 - 500 * t)}%
+					);`;
+			}
+		};
+	}
 
 </script>
 
@@ -40,3 +62,42 @@
     {/if}
   </section>
 {/if}
+{#if loaded}
+	<div class="centered" in:spin={{ duration: 8000 }} out:fade>
+		<span><a href="/forms">SKISSUE</a></span>
+
+	</div>
+	<div>
+		<h1 transition:fly={{ y: 200, duration: 2000, delay: 6000 }} on:transitionstart>
+			Antti Aho, Andreas Lang, Jaakko Kuivasniemi
+		</h1>
+
+	</div>
+{/if}
+<style>
+  .hideScroll::-webkit-scrollbar { display: none; }
+	.centered {
+		position: absolute;
+		left: 50%;
+		top: 40vh;
+		transform: translate(-50%, -50%);
+		color: #a72b63;
+		transition: color 3.8s;
+	}
+	span {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		font-size: 15vw;
+		font-weight: 600;
+		top: 5vh;
+		font-family: 'Archivo', sans-serif;
+    overflow: clip;
+	}
+	h1 {
+		position: absolute;
+		left: 50%;
+		top: 65vh;
+		transform: translate(-50%, -50%);
+		color: #794dff;
+	}
+</style>
