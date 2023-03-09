@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { form } from "../../../routes/form/stores";
+  import { form } from "../../../routes/preset/stores";
 
   export let index
 
   //Function for adding an option to the JSON document
   function addOption() {
-    $form.sections[index].options = [...$form.sections[index].options,
+    $form.sections[index]["options"] = [...$form.sections[index].options,
       {
-        id: $form.sections[index].options.last_index++,
+        id: 0,
         label: "",
         state: false,
         inputField: false,

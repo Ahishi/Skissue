@@ -1,7 +1,7 @@
 <script>
+  export let readonly
   import Contact from "./header/Contact.svelte";
-
-  import { form } from "../../../routes/form/stores";
+  import { form } from "../../../routes/preset/stores.ts";
 </script>
 
 <header class="rounded overflow-clip bg-primary relative">
@@ -13,5 +13,5 @@
     <input type="text" class="text-5xl font-semibold capitalize bg-transparent opacity-80 focus:opacity-100 focus:ring-0 border-0" bind:value={$form.name}/>
   </div>
 
-  <Contact contact={$form.contact}/>
+  <Contact contact={$form.contact} readonly={readonly}/>
 </header>

@@ -54,11 +54,11 @@
       <!-- Type -->
       <fieldset class="relative opacity-80 border rounded-lg bg-background-dark bg-opacity-20 overflow-clip w-fit">
         <legend class="ml-[0.75rem] text-xs px-[0.25rem]">Type</legend>
-        <select bind:value={section.type} class="form-multiselect bg-transparent outline-0 text-lg py-0.5 px-1 -mt-0.25 rounded" required>
-          <option value="text-area">Text Area</option>
-          <option value="radio-buttons">Radio Buttons</option>
-          <option value="select-box">Select Box</option>
-          <option value="select-box-small">Select Box (compact)</option>
+        <select bind:value={section.type} class="bg-transparent outline-0 text-lg px-1 -mt-0.25 rounded" required>
+          <option class="text-black opacity-80 transition hover:bg-background-dark" value="text-area">Text Area</option>
+          <option class="text-black opacity-80 transition hover:bg-background-dark" value="radio-buttons">Radio Buttons</option>
+          <option class="text-black opacity-80 transition hover:bg-background-dark" value="select-box">Select Box</option>
+          <option class="text-black opacity-80 transition hover:bg-background-dark" value="select-box-small">Select Box (compact)</option>
         </select>
       </fieldset>
 

@@ -64,7 +64,7 @@
 {/if}
 {#if loaded}
 	<div class="centered" in:spin={{ duration: 8000 }} out:fade>
-		<span><a href="/forms">SKISSUE</a></span>
+		<span><a href="/preset">SKISSUE</a></span>
 
 	</div>
 	<div>

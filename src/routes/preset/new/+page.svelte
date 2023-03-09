@@ -7,17 +7,18 @@
   import Header from "../../../components/form-parts/editable/EditableHeader.svelte";
   import NewSegment from "./NewSegment.svelte";
 
-  import { form } from "../stores.ts";
   import { addDoc, collection } from "firebase/firestore";
   import { auth, db } from "../../../firebase";
   import { goto } from "$app/navigation";
+  import { form } from "../stores.ts";
+
   let openNewSegment = false;
 
   const components = [
     { type: "radio-buttons", component: RadioButtons },
     { type: "select-box", component: SelectBox },
     { type: "text-area", component: TextArea },
-    { type: "select-box-small", component: SelectBoxSmall },
+    { type: "select-box-small", component: SelectBoxSmall }
   ];
 
   let selectedComponents = [];
@@ -26,10 +27,14 @@
     $form.sections = [...$form.sections.slice(0, index), ...$form.sections.slice(index + 1)];
   }
 
-  async function addSection(event){
+  async function addSection(event) {
     let newSection = event.detail.section;
-    newSection.id  = $form.sections.length;
-    $form.sections = [...$form.sections, newSection]
+    $form.sections.push(newSection)
+    console.log(newSection)
+    $form.sections.forEach((currentValue, index) => {
+      console.log(index)
+      $form.sections[index].id = index;
+    });
   }
 
   async function onSubmit(){
@@ -40,18 +45,18 @@
       await goto("/forms")
     }
   }
+
 </script>
 
 <form class="mt-1 flex flex-col gap-1 relative" on:submit|preventDefault={onSubmit}>
-  <Header name={$form.name} group={$form.group} contact={$form.contact} />
+  <Header name={$form.name} group={$form.group} contact={$form.contact} readonly={true} />
   {#each $form.sections as section, index}
-    <span class="invisible absolute">{selectedComponents[section.id] = components.find(comp => comp.type === section.type)}</span>
+    <span class="invisible absolute">{selectedComponents[index] = components.find(comp => comp.type === section.type)}</span>
     <div
       class="rounded overflow-clip w-full z-10 opacity-80 p-2 flex flex-col gap-y-0.5 bg-background-darker rounded mr-0.5 relative">
-      <svelte:component this={selectedComponents[index].component} index={index} />
-      <span>{console.log(selectedComponents)}</span>
+      <svelte:component this={selectedComponents[index].component} index={section.id} />
       <!-- Section delete -->
-      <button on:click={() => deleteSection(index)}
+      <button on:click={() => deleteSection(section.id)}
               class="flex opacity-80 hover:opacity-100 w-fit absolute right-1 top-1 material-symbols-outlined"
               type="button">
         delete

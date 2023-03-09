@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { form } from "../../../routes/form/stores.js";
+  import { form } from "../../../routes/preset/stores.js";
 
   export let index;
   let section = $form.sections[index]

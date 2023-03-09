@@ -6,11 +6,13 @@
 	import { writable } from "svelte/store";
 	import { fade } from "svelte/transition";
 	import { addDoc } from "firebase/firestore/lite";
-	import { auth, db, groupCollection } from "../../firebase";
+	import { auth, groupCollection } from "../../firebase";
 
 	let viewState = writable(0);
+	let historyState = writable(false);
+	setContext("historyState", historyState);
 	setContext("viewState", viewState);
-	const user = getContext("user")
+	const user = getContext("user");
 
 	function clickOutside(element: any, callbackFunction: any) {
 		function onClick(event: any) {
@@ -82,11 +84,16 @@
 			<!-- Segmented button for New/History selection -->
 			<div class="flex rounded-full opacity-80 border overflow-clip my-0.25 text-sm ml-auto">
 				<button
+					on:click={() => {$historyState = false}}
 					class="w-[7rem] border-r bg-secondary-80 bg-opacity-0 hover:bg-opacity-80 transition"
-					>New</button
+				>New
+				</button
 				>
-				<button class="w-[7rem] bg-secondary-80 bg-opacity-0 hover:bg-opacity-80 transition"
-					>History</button
+				<button
+					on:click={() => {{$historyState = true}}}
+					class="w-[7rem] bg-secondary-80 bg-opacity-0 hover:bg-opacity-80 transition"
+				>History
+				</button
 				>
 			</div>
 		</nav>

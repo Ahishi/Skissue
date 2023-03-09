@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { form } from "../../../routes/form/stores";
+  import { form } from "../../../routes/preset/stores";
 
   export let index;
   let section = $form.sections[index]
-  export let readonly: boolean;
+  export let readonly;
 </script>
 
 <h4 class="font-semibold">{section.title}</h4>
