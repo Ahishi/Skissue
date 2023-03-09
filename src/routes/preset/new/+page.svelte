@@ -27,12 +27,12 @@
     $form.sections = [...$form.sections.slice(0, index), ...$form.sections.slice(index + 1)];
   }
 
-  async function addSection(event) {
-    let newSection = event.detail.section;
-    $form.sections.push(newSection)
-    console.log(newSection)
+  const addSection = (event) => {
+    $: console.log($form.sections)
+    let sec = event.detail.sec;
+    $form.sections = [...$form.sections, Object.assign({}, sec)];
     $form.sections.forEach((currentValue, index) => {
-      console.log(index)
+      console.log(index);
       $form.sections[index].id = index;
     });
   }
@@ -54,7 +54,7 @@
     <span class="invisible absolute">{selectedComponents[index] = components.find(comp => comp.type === section.type)}</span>
     <div
       class="rounded overflow-clip w-full z-10 opacity-80 p-2 flex flex-col gap-y-0.5 bg-background-darker rounded mr-0.5 relative">
-      <svelte:component this={selectedComponents[index].component} index={section.id} />
+      <svelte:component this={selectedComponents[index].component} index={index} />
       <!-- Section delete -->
       <button on:click={() => deleteSection(section.id)}
               class="flex opacity-80 hover:opacity-100 w-fit absolute right-1 top-1 material-symbols-outlined"

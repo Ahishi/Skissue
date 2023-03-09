@@ -5,9 +5,9 @@
 
   //Function for adding an option to the JSON document
   function addOption() {
-    $form.sections[index]["options"] = [...$form.sections[index].options,
+    $form.sections[index].options = [...$form.sections[index].options,
       {
-        id: 0,
+        id: $form.sections[index].options.last_index++,
         label: "",
         state: false,
         inputField: false,

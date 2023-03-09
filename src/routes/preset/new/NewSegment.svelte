@@ -4,7 +4,7 @@
 
   const dispatch = createEventDispatcher();
 
-  let section = {
+  let sec = {
     id: null,
     type: "",
     title: "",
@@ -20,7 +20,7 @@
 
   async function addNewSection() {
     dispatch("addSection", {
-      section: section
+      sec: sec
     });
     dispatch("closeSegment");
   }
@@ -37,7 +37,7 @@
 
       <!-- Required? -->
       <div class="flex">
-        <input bind:checked={section.required} class="rounded-md text-primary my-auto mr-0.5" id="require" type="checkbox" />
+        <input bind:checked={sec.required} class="rounded-md text-primary my-auto mr-0.5" id="require" type="checkbox" />
         <label class="text-sm my-auto font-medium" for="require">Required</label>
       </div>
 
@@ -46,7 +46,7 @@
     <!-- Title -->
     <fieldset class="relative opacity-80 border rounded-lg bg-background-dark bg-opacity-20 overflow-clip">
       <legend class="ml-[0.75rem] text-xs px-[0.25rem]">Title</legend>
-      <input bind:value={section.title} class="bg-transparent outline-0 text-lg py-0.5 px-1 -mt-0.25 w-full" type="text" required />
+      <input bind:value={sec.title} class="bg-transparent outline-0 text-lg py-0.5 px-1 -mt-0.25 w-full" type="text" required />
     </fieldset>
 
     <div class="flex justify-between">
@@ -54,7 +54,7 @@
       <!-- Type -->
       <fieldset class="relative opacity-80 border rounded-lg bg-background-dark bg-opacity-20 overflow-clip w-fit">
         <legend class="ml-[0.75rem] text-xs px-[0.25rem]">Type</legend>
-        <select bind:value={section.type} class="bg-transparent outline-0 text-lg px-1 -mt-0.25 rounded" required>
+        <select bind:value={sec.type} class="bg-transparent outline-0 text-lg px-1 -mt-0.25 rounded" required>
           <option class="text-black opacity-80 transition hover:bg-background-dark" value="text-area">Text Area</option>
           <option class="text-black opacity-80 transition hover:bg-background-dark" value="radio-buttons">Radio Buttons</option>
           <option class="text-black opacity-80 transition hover:bg-background-dark" value="select-box">Select Box</option>
