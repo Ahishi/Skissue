@@ -14,6 +14,7 @@
 
   let openNewSegment = false;
 
+  //Form sections available
   const components = [
     { type: "radio-buttons", component: RadioButtons },
     { type: "select-box", component: SelectBox },
@@ -23,10 +24,12 @@
 
   let selectedComponents = [];
 
+  //Remove section from a preset
   async function deleteSection(index: number){
     $form.sections = [...$form.sections.slice(0, index), ...$form.sections.slice(index + 1)];
   }
 
+  //Add section to a preset
   const addSection = (event) => {
     $: console.log($form.sections)
     let sec = event.detail.sec;
@@ -37,6 +40,7 @@
     });
   }
 
+  //On preset submit varify and send to proper place
   async function onSubmit(){
     const uid = auth.currentUser?.uid
     if (uid) {
@@ -48,7 +52,10 @@
 
 </script>
 
+<!-- Preset -->
 <form class="mt-1 flex flex-col gap-1 relative" on:submit|preventDefault={onSubmit}>
+
+  <!-- Preset header -->
   <Header name={$form.name} group={$form.group} contact={$form.contact} readonly={true} />
   {#each $form.sections as section, index}
     <span class="invisible absolute">{selectedComponents[index] = components.find(comp => comp.type === section.type)}</span>

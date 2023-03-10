@@ -4,7 +4,6 @@
   import { auth } from "../firebase";
   import { signOut} from "firebase/auth";
   import { goto } from "$app/navigation";
-  import { getContext } from "svelte";
 	import { fade, fly } from 'svelte/transition';
 	import { elasticOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
@@ -14,13 +13,16 @@
   let openLoginOptions = false;
   let loginNotRegister = true;
 
+	//Logout
   async function logOut() {
     await signOut(auth);
     await goto("/");
   }
+
   onMount(() => {
 		loaded = true;
 	});
+
 	function spin(node, { duration }) {
 		return {
 			duration,
@@ -48,9 +50,13 @@
           class="absolute right-2 top-2 material-symbols-outlined opacity-80 hover:opacity-100">logout
   </button>
 {/if} -->
+
+<!-- Login button -->
 <button on:click={() => openLoginOptions = !openLoginOptions}
         class="absolute right-2 top-2 material-symbols-outlined opacity-80 hover:opacity-100">login
 </button>
+
+
 {#if openLoginOptions}
   <section class="w-fit bg-background-darker rounded fixed top-1 right-1">
     {#if loginNotRegister}
@@ -62,6 +68,7 @@
     {/if}
   </section>
 {/if}
+
 {#if loaded}
 	<div class="centered" in:spin={{ duration: 8000 }} out:fade>
 		<span><a href="/preset">SKISSUE</a></span>
@@ -74,6 +81,7 @@
 
 	</div>
 {/if}
+
 <style>
   .hideScroll::-webkit-scrollbar { display: none; }
 	.centered {

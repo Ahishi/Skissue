@@ -5,6 +5,7 @@
   import { auth } from "../firebase";
   import { writable } from "svelte/store";
 
+  //Set user to store
   setContext("user", writable(null))
   const loggedUser = getContext("user")
 

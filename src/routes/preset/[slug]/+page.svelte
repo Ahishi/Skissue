@@ -14,6 +14,7 @@
   /** @type {import("../../../../.svelte-kit/types/src/routes").PageData} */
   export let data;
 
+  //Components that can be used
   const components = [
     { type: "radio-buttons", component: RadioButtons },
     { type: "select-box", component: SelectBox },
@@ -23,18 +24,22 @@
 
   let selectedComponent: any = components[0];
 
+  //Get user data from store
   const user = getContext("user")
 
+  //Load form on component mount lifecycle
   onMount(async () => {
     await loadForm()
   })
 
   async function loadForm() {
 
+    //Wait until user is loaded (loads after mount for some reason??)
     while ($user == null) {
       await new Promise(r => setTimeout(r, 50))
     }
 
+    //Get preset from a user
     try{
       const docRef = doc(db, "users", $user.uid , "presets", data.slug);
       const docSnap = await getDoc(docRef);
@@ -51,9 +56,11 @@
   }
 
   async function onSubmit(){
+    //Submit a form from store to users forms folder
     if ($user.uid) {
       const ref = collection(db, "users", $user.uid, "forms")
       await addDoc(ref, $form)
+      //Reroute to forms
       await goto("/forms")
     }
   }
@@ -61,6 +68,7 @@
 </script>
 
 <form class="mt-1 flex flex-col gap-1" on:submit|preventDefault={onSubmit}>
+  <!-- Header for form -->
   <Header name={$form.name} group={$form.group} contact={$form.contact} readonly={false} />
 
   {#each $form.sections as section, index}
@@ -68,7 +76,7 @@
       class="invisible absolute">{ selectedComponent = components.find(comp => comp.type === section.type) }</span>
     <article
       class="rounded overflow-clip w-full z-10 opacity-80 p-2 flex flex-col gap-y-0.5 bg-background-darker rounded mr-0.5">
-      <svelte:component this={selectedComponent.component} readonly={false} index="{index}" />
+      <svelte:component this={selectedComponent.component} readonly={false} index="{index}" /> <!-- Load custom svelte component from list -->
     </article>
   {/each}
 
